@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-12">
+    <h5>Buscar: {{ nombre }}</h5>
+  </div>
+  <div class="col-8">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Buscar pokémon..."
+      [(ngModel)]="nombre"
+    />
+</div>
+<div class="col-4">
+
+    <button class="btn btn-outline-dark" (click)="buscar()">buscar</button>
+</div>
+</div>
