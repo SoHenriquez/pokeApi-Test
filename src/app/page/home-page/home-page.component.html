@@ -1,1 +1,58 @@
-<p>home-page works!</p>
+<div class="container p-3">
+  <app-busqueda></app-busqueda>
+</div>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Detalles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let pokemon of pokemons
+          | paginate: { itemsPerPage: pageSize, currentPage: page };
+          let i = index
+        "
+      >
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ pokemon.name }}</td>
+        <td><button class="rounded" (click)="openModal(pokemon.name)" data-bs-toggle="modal" data-bs-target="#exampleModal">ver</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls
+    class="text-center"
+    (pageChange)="page = $event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+  ></pagination-controls>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Detalles sobre {{ pokemonData?.name }}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Altura: {{ pokemonData?.height }}</p>
+            <p>Peso: {{ pokemonData?.weight }}</p>
+            <div class="row">
+
+                <div *ngFor="let sprite of pokemonData?.sprites | keyvalue" class="col-sm-3">
+                    <img *ngIf="sprite.value" [src]="sprite.value" alt="Sprite">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
