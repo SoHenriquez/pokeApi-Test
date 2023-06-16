@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../page.service';
+import { Pokemon } from '../interface/pokemon.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -33,7 +34,7 @@ export class HomePageComponent implements OnInit {
   }
   buscar ( name: string ) {
     
-    this.pageService.getPokemon( name ).subscribe((data: any) => {
+    this.pageService.getPokemon( name ).subscribe((data: Pokemon) => {
       this.pokemonData = data;
     });
  }

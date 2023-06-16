@@ -4,8 +4,8 @@
 
 <div class="container">
   <table class="table">
-    <thead>
-      <tr>
+    <thead >
+      <tr class="table-danger">
         <th scope="col">#</th>
         <th scope="col">Nombre</th>
         <th scope="col">Detalles</th>
@@ -25,7 +25,7 @@
         <td>
           <button
             type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-dark"
             (click)="buscar(pokemon.name)"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
@@ -41,6 +41,7 @@
     (pageChange)="page = $event"
     previousLabel="Anterior"
     nextLabel="Siguiente"
+    
   ></pagination-controls>
 
   <!-- Modal -->
@@ -54,7 +55,7 @@
   >
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-danger">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
             Detalles sobre {{ pokemonData?.name }}
           </h1>
@@ -65,7 +66,7 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body bg-dark text-light">
+        <div class="modal-body bg-dark text-secondary">
           <div class="d-flex">
             <h5 class="col-6 text-center">Altura: {{ pokemonData?.height | decimal }} m </h5>
             <h5 class="col-6 text-center">Peso: {{ pokemonData?.weight | decimal }} kg</h5>
@@ -76,10 +77,7 @@
             <div id="carouselExampleIndicators" class="carousel slide">
               <div class="carousel-indicators">
                 <button
-                  *ngFor="
-                    let sprite of pokemonData?.sprites | keyvalue;
-                    let i = index
-                  "
+                  *ngFor="let sprite of pokemonData?.sprites | keyvalue; let i = index"
                   type="button"
                   [attr.data-bs-target]="'#carouselExampleIndicators'"
                   [attr.data-bs-slide-to]="i"
@@ -89,63 +87,33 @@
                 ></button>
               </div>
               <div class="carousel-inner">
-                <ng-container
-                  *ngFor="
-                    let sprite of pokemonData?.sprites | keyvalue;
-                    let i = index
-                  "
-                >
-                  <div
-                    *ngIf="sprite.value"
-                    class="carousel-item"
-                    [class.active]="i == 0"
-                  >
-                    <img
-                      class="d-block w-100"
-                      [src]="sprite.value"
-                      alt="Sprite"
-                    />
+                <ng-container *ngFor="let sprite of pokemonData?.sprites | keyvalue; let i = index">
+                  <div [ngClass]="['carousel-item', i == 0 ? 'active' : '']" *ngIf="sprite.value">
+                    <img class="d-block w-100" [src]="sprite.value" alt="Sprite" />
                   </div>
-                  <div *ngIf="!sprite.value" class="carousel-item d-none"></div>
                 </ng-container>
               </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                [attr.data-bs-target]="'#carouselExampleIndicators'"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
+              <button class="carousel-control-prev" type="button" [attr.data-bs-target]="'#carouselExampleIndicators'" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                [attr.data-bs-target]="'#carouselExampleIndicators'"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
+              <button class="carousel-control-next" type="button" [attr.data-bs-target]="'#carouselExampleIndicators'" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
+            
             <!-- fin carrusel -->
             
           </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cerrar
-          </button>
+        </div> 
+        <div class="modal-footer d-flex justify-content-between bg-danger">
+          <div class="d-flex flex-row ">
+            <h5 class="me-2">Habilidades:</h5>
+              <div *ngFor="let ability of pokemonData?.abilities" >
+                <p class="bg-light  rounded me-2 px-1">{{ability.ability.name}}</p>
+              </div>
+          </div>
         </div>
       </div>
     </div>
