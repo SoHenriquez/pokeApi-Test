@@ -28,7 +28,8 @@ export class PageService {
           height: response.height,
           weight: response.weight,
           sprites: response.sprites,
-          abilities: response.abilities  
+          abilities: response.abilities,
+          moves: response.moves  
         };
       })
     );
