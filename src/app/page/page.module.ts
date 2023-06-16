@@ -5,6 +5,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from './pipes/filter.pipe';
+import { DecimalPipe } from './pipes/decimal.pipe';
 
 
 
@@ -12,7 +13,8 @@ import { FilterPipe } from './pipes/filter.pipe';
   declarations: [
     HomePageComponent,
     BusquedaComponent,
-    FilterPipe
+    FilterPipe,
+    DecimalPipe
   ],
   imports: [
     CommonModule,

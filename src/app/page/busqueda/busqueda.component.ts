@@ -1,9 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { PageService } from '../page.service';
 
-export interface BusquedaData {
-  nombre: string;
-}
 
 
 @Component({
@@ -11,7 +7,7 @@ export interface BusquedaData {
   templateUrl: './busqueda.component.html',
   styleUrls: ['./busqueda.component.css']
 })
-export class BusquedaComponent implements BusquedaData {
+export class BusquedaComponent {
 
   @Output() buscar: EventEmitter<string> = new EventEmitter<string>();
 
@@ -20,11 +16,8 @@ export class BusquedaComponent implements BusquedaData {
   emitirBusqueda() {
     this.buscar.emit(this.nombre);
   }
-  constructor( private pageService: PageService ) { }
+  constructor() { }
   
-  // buscar ( ) {
-    
-  //    this.pageService.getPokemon( this.nombre );
-  // }
+
 
 } 
