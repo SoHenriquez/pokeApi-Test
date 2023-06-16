@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageService } from '../page.service';
+import { BusquedaComponent } from "./../busqueda/busqueda.component";
 
 declare const bootstrap: any;
 @Component({
@@ -8,12 +9,23 @@ declare const bootstrap: any;
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  pokemons: any[] = [];
+
+  pokemons   : any[] = [];
   pokemonData: any;
-  page   !: number;
-  pageSize: number = 10;
+  page      !: number;
+  pageSize   : number = 10;
   
-  constructor(private pageService: PageService) { }
+  nombre     :any = '';
+  constructor(private pageService: PageService) {
+   
+   }
+
+   onBusquedaRealizada(nombre: string) {
+    console.log(nombre);
+    // Aquí puedes filtrar la tabla con la búsqueda realizada
+    this.nombre = nombre;
+  }
+
 
   ngOnInit(): void {
     this.pageService.getPokemons().subscribe(

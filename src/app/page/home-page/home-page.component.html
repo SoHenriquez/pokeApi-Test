@@ -1,5 +1,5 @@
 <div class="container p-3">
-  <app-busqueda></app-busqueda>
+  <app-busqueda (buscar)="onBusquedaRealizada($event) "></app-busqueda>
 </div>
 
 <div class="container">
@@ -15,7 +15,7 @@
       <tr
         *ngFor="
           let pokemon of pokemons
-          | paginate: { itemsPerPage: pageSize, currentPage: page };
+          | paginate: { itemsPerPage: pageSize, currentPage: page } | filter: nombre ;
           let i = index
         "
       >

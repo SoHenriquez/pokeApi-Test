@@ -8,10 +8,8 @@
       class="form-control"
       placeholder="Buscar pokémon..."
       [(ngModel)]="nombre"
+      (ngModelChange)="emitirBusqueda()"
     />
 </div>
-<div class="col-4">
 
-    <button class="btn btn-outline-dark" (click)="buscar()">buscar</button>
-</div>
 </div>

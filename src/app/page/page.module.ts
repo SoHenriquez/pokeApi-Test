@@ -4,13 +4,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 
 @NgModule({
   declarations: [
     HomePageComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
