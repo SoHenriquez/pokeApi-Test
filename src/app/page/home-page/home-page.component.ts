@@ -38,8 +38,5 @@ export class HomePageComponent implements OnInit {
       this.pokemonData = data;
     });
  }
- actualizarPageSize(){
-  console.log(this.pageSize);
-  
- }
+ 
 }
