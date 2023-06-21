@@ -1,10 +1,14 @@
 <div class="container p-3">
   <app-busqueda (buscar)="onBusquedaRealizada($event)"></app-busqueda>
-
 </div>
 
 <div class="container">
-  <select class="form-select mb-3" aria-label="Mostrar" [(ngModel)]="pageSize"  style="width: 100px;">
+  <select
+    class="form-select mb-3"
+    aria-label="Mostrar"
+    [(ngModel)]="pageSize"
+    style="width: 100px"
+  >
     <option selected value="5">5</option>
     <option value="10">10</option>
     <option value="15">15</option>
@@ -12,8 +16,7 @@
   <table class="table">
     <thead>
       <tr class="table-danger">
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
+        <th scope="col" (click)="toggleOrder()">Nombre</th>
         <th scope="col">Detalles</th>
       </tr>
     </thead>
@@ -22,11 +25,11 @@
         *ngFor="
           let pokemon of pokemons
             | filter : nombre
+            | orderby : 'name' : order
             | paginate : { itemsPerPage: pageSize, currentPage: page };
           let i = index
         "
       >
-        <th scope="row">{{ i + 1 }}</th>
         <td>{{ pokemon.name }}</td>
         <td>
           <button
@@ -62,7 +65,7 @@
       <div class="modal-content">
         <div class="modal-header bg-danger">
           <h1 class="modal-title fs-5" id="exampleModalLabel">
-            Detalles sobre {{ pokemonData?.name }} {{ pokemonData?.id}}
+            Detalles sobre {{ pokemonData?.name }} {{ pokemonData?.id }}
           </h1>
           <button
             type="button"
@@ -151,7 +154,10 @@
             <h5 class="me-2">Habilidades:</h5>
             <div>
               <div class="d-flex flex-row flex-wrap">
-                <p class="bg-light rounded me-2 px-1" *ngFor="let ability of pokemonData?.abilities">
+                <p
+                  class="bg-light rounded me-2 px-1"
+                  *ngFor="let ability of pokemonData?.abilities"
+                >
                   {{ ability.ability.name }}
                 </p>
               </div>
@@ -159,16 +165,18 @@
           </div>
           <div class="d-block">
             <h5 class="me-2">Movimientos:</h5>
-            <div class="overflow-auto" style="max-height: 150px;">
+            <div class="overflow-auto" style="max-height: 150px">
               <div class="d-flex flex-row flex-wrap">
-                <p class="bg-light rounded me-2 px-1" *ngFor="let move of pokemonData?.moves">
+                <p
+                  class="bg-light rounded me-2 px-1"
+                  *ngFor="let move of pokemonData?.moves"
+                >
                   {{ move.move.name }}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   </div>

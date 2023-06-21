@@ -9,34 +9,36 @@ import { Pokemon } from '../interface/pokemon.interface';
 })
 export class HomePageComponent implements OnInit {
 
-  pokemons   : any[] = [];
+  pokemons: any[] = [];
   pokemonData: any;
   page      !: number;
-  pageSize   : number = 5;
-  
-  nombre     :any = '';
+  pageSize: number = 5;
+  order: 'asc' | 'desc' = 'asc';
+  nombre: any = '';
   constructor(private pageService: PageService) {
-   
-   }
 
-   onBusquedaRealizada(nombre: string) {
+  }
+
+  onBusquedaRealizada(nombre: string) {
     this.nombre = nombre;
   }
 
 
   ngOnInit(): void {
     this.pageService.getPokemons().subscribe(
-      (data:any) => {
+      (data: any) => {
         this.pokemons = data.results;
       }
     )
-    
+
   }
-  buscar ( name: string ) {
-    
-    this.pageService.getPokemon( name ).subscribe((data: Pokemon) => {
+  buscar(name: string) {
+
+    this.pageService.getPokemon(name).subscribe((data: Pokemon) => {
       this.pokemonData = data;
     });
- }
- 
+  }
+  toggleOrder(): void {
+    this.order = this.order === 'asc' ? 'desc' : 'asc';
+  }
 }

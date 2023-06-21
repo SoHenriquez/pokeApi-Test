@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipe } from './pipes/filter.pipe';
 import { DecimalPipe } from './pipes/decimal.pipe';
+import { OrderbyPipe } from './pipes/orderby.pipe';
 
 
 
@@ -14,7 +15,8 @@ import { DecimalPipe } from './pipes/decimal.pipe';
     HomePageComponent,
     BusquedaComponent,
     FilterPipe,
-    DecimalPipe
+    DecimalPipe,
+    OrderbyPipe
   ],
   imports: [
     CommonModule,
